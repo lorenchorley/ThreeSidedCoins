@@ -128,7 +128,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Radius: 1
   Thickness: 1
-  Range: 1
+  Parameter: 1
   Min: 0
   Max: 0
   Rigidbody: {fileID: 0}

@@ -21,7 +21,7 @@ public class ExperimentManager : MonoBehaviour {
 
     [Header("Randomised parameters")]
     public bool RandomRotation = true; // TODO 
-    [Range(0, 10)] public float MaximumHorizontalVelocity = 0;
+    [Range(0, 100)] public float MaximumHorizontalVelocity;
     [Range(1, 50)] public float HeightMin;
     [Range(1, 50)] public float HeightMax;
 
@@ -87,14 +87,19 @@ public class ExperimentManager : MonoBehaviour {
             Vector3 GridCenterOffset = new Vector3(1, 0, 1) * TestGridScale * TestGridSize * 0.5f;
             for (int index = 0; index < TestGridSize * TestGridSize; index++) {
 
+                // Create a new coin
+                CoinComponent coin = GameObject.Instantiate(CoinPrefab);
+
+                // Set the manager in the coin so it can let the manager know when the coin has settled into a final position
+                coin.ExperimentManager = this;
+
                 // Determine the coins position
                 int row = index % TestGridSize; 
                 int column = index / TestGridSize; 
                 Vector3 HorizontalOffset = TestGridScale * new Vector3(row, 0, column);
                 float VerticalOffset = Mathf.Lerp(HeightMin, HeightMax, UnityEngine.Random.value);
 
-                // Set the coin position, rotation and velocity
-                CoinComponent coin = GameObject.Instantiate(CoinPrefab);
+                // Set the coin position and rotation
                 coin.transform.rotation = Quaternion.Euler(UnityEngine.Random.value * 360, UnityEngine.Random.value * 360, UnityEngine.Random.value * 360);
                 coin.transform.position = Ground.transform.position // The position of the ground
                                           + Vector3.up * VerticalOffset // The random height
@@ -107,12 +112,9 @@ public class ExperimentManager : MonoBehaviour {
                     rb = coin.gameObject.AddComponent<Rigidbody>();
 
                 // Set random velocity
-                Vector3 v = UnityEngine.Random.onUnitSphere * MaximumHorizontalVelocity;
+                Vector3 v = UnityEngine.Random.onUnitSphere * MaximumHorizontalVelocity * UnityEngine.Random.value;
                 v.y = 0;
                 rb.velocity = v;
-
-                // Set the manager in the coin so it can let the manager know when the coin has settled into a final position
-                coin.ExperimentManager = this;
 
                 // Set the container for the coin, so it's nice and tiny
                 coin.transform.SetParent(CoinContainer);

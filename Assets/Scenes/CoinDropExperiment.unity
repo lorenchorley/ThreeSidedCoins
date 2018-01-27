@@ -324,7 +324,7 @@ MonoBehaviour:
   TestGridSize: 50
   TestGridScale: 10
   RandomRotation: 1
-  MaximumHorizontalVelocity: 0.434
+  MaximumHorizontalVelocity: 44.6
   HeightMin: 6
   HeightMax: 50
   Timeout: 10

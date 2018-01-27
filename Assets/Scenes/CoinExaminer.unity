@@ -364,6 +364,11 @@ Prefab:
       propertyPath: m_Name
       value: Coin (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 114129738584556776, guid: 166eafc0cfeb3a44c92a4f9de177f710,
+        type: 2}
+      propertyPath: Parameter
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 166eafc0cfeb3a44c92a4f9de177f710, type: 2}
   m_IsPrefabParent: 0

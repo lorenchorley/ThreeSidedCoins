@@ -15,7 +15,7 @@ public class CoinComponent : MonoBehaviour {
     public float Thickness = 1;
 
     [Range(0, 1)]
-    public float Range = 0;
+    public float Parameter = 0;
 
     public float Min, Max;
 
@@ -34,13 +34,15 @@ public class CoinComponent : MonoBehaviour {
          
         if (Rigidbody.IsSleeping()) {
             enabled = false;
-            ExperimentManager.RegisterSelfAsStopped(this);
+            if (ExperimentManager != null)
+                ExperimentManager.RegisterSelfAsStopped(this);
         }
     }
 
     void UpdateColliderAndMesh() {
-        Range = Mathf.Clamp01(Range);
-        Thickness = (1 / Mathf.Lerp(Min, Max, Range)) * UnityCylinderVerticalMultiplier;
+        Parameter = Mathf.Clamp01(Parameter);
+        float ratio = Mathf.Lerp(Min, Max, Parameter);
+        Thickness = (2 / ratio) * UnityCylinderVerticalMultiplier;
 
         transform.localScale = new Vector3(Radius, Thickness, Radius);
     }
