@@ -6,7 +6,7 @@ using UnityEngine;
 public class CoinComponent : MonoBehaviour {
 
     private const float MinAngle = 10;
-    private const float UnityCylinderVerticalMultiplier = 0.25f;
+    private const float UnityCylinderVerticalMultiplier = 0.5f;
 
     [Tooltip("In Unity distance units")]
     public float Radius = 1;
@@ -42,7 +42,7 @@ public class CoinComponent : MonoBehaviour {
     void UpdateColliderAndMesh() {
         Parameter = Mathf.Clamp01(Parameter);
         float ratio = Mathf.Lerp(Min, Max, Parameter);
-        Thickness = (2 / ratio) * UnityCylinderVerticalMultiplier;
+        Thickness = (1 / ratio) * UnityCylinderVerticalMultiplier;
 
         transform.localScale = new Vector3(Radius, Thickness, Radius);
     }

@@ -327,7 +327,7 @@ MonoBehaviour:
   MaximumHorizontalVelocity: 44.6
   HeightMin: 6
   HeightMax: 50
-  Timeout: 10
+  Timeout: 20
   startExperiment: 1
   Automate: 1
   OnFinishedExperiment:
